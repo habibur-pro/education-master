@@ -39,7 +39,7 @@ const Register = () => {
                         </div>
                     </div>
                 </div>
-                <button className="btn btn-block btn-primary mt-10">Submit</button>
+                <button className="btn btn-block btn-primary mt-10">Register</button>
             </form>
         </div>
     );
