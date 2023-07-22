@@ -1,11 +1,13 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import MyContainer from "../MyContainer/MyContainer";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { AuthContext } from "../../routes/AuthProvider";
 
 const Navbar = () => {
     const location = useLocation()
-    console.log(location)
+    const { user } = useContext(AuthContext)
+    console.log(user)
 
     const [scrolled, setScrolled] = useState(false);
 
@@ -31,7 +33,7 @@ const Navbar = () => {
 
 
     return (
-        <nav className={`fixed w-full  z-50   ${scrolled ? "bg-white border-b text-black" : "text-black "}`}>
+        <nav className={`fixed w-full  z-50   ${scrolled ? "bg-white border-b text-black" : "text-black bg-white"}`}>
             <MyContainer>
                 <div className="flex justify-between items-center my-4">
                     <div className="flex items-center justify-between gap-x-10">

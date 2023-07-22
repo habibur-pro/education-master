@@ -1,7 +1,10 @@
 import PageHeader from "../../components/PageHeader/PageHeader";
 import { Controller, useForm } from "react-hook-form"
+import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
+    const { registerEmailPassword } = useAuth()
+
 
     const {
         register,
@@ -13,7 +16,10 @@ const Register = () => {
 
     const password = watch('password', '');
 
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        registerEmailPassword(data.email, data.password)
+            .then(result => console.log('user', result))
+    }
 
 
     return (
