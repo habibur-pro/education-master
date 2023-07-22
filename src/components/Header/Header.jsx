@@ -9,7 +9,7 @@ import slide1 from '../../assets/images/Slider/slide-1.jpg'
 import slide2 from '../../assets/images/Slider/slide-2.jpg'
 import slide3 from '../../assets/images/Slider/slide-3.jpg'
 import MyContainer from '../MyContainer/MyContainer';
-
+import './Header.css'
 
 const Header = () => {
     return (
