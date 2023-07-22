@@ -19,14 +19,21 @@ const Login = () => {
                 <div className="mb-7">
                     <label className="font-semibold" htmlFor="">Email</label>
                     <input
-                        {...register("email", { required: true, maxLength: 30 })}
+                        {...register("email", { required: "Email is required" })}
                         className="p-3 block border outline-primary outline-1 w-full mt-2" type="email" placeholder="Email" />
+                    {errors.email && <span className="text-red-500 text-sm" role="alert">{errors.email.message}</span>}
                 </div>
                 <div className="mb-7">
                     <label className="font-semibold" htmlFor="">Password</label>
                     <input
-                        {...register("password", { required: true, maxLength: 30 })}
+                        {...register("password", {
+                            required: 'password is required', pattern: {
+                                value: /^(?=.*\d)(?=.*[^a-zA-Z0-9]).{6,}$/,
+                                message: "password must be 6 character, one number and one spacial character",
+                            }
+                        })}
                         className="p-3 block border outline-primary outline-1 w-full mt-2" type="password" placeholder="Password" />
+                    {errors.password && <span className="text-red-500 text-sm" role="alert">{errors.password.message}</span>}
                 </div>
                 <button className="btn btn-block btn-primary mt-10">Login</button>
             </form>
