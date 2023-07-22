@@ -1,9 +1,11 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import MyContainer from "../MyContainer/MyContainer";
 import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
 const Navbar = () => {
+    const location = useLocation()
+    console.log(location)
 
     const [scrolled, setScrolled] = useState(false);
 
@@ -29,55 +31,56 @@ const Navbar = () => {
 
 
     return (
-        <nav className={`fixed w-full z-50 text-white ${scrolled ? "bg-white" : ""}`}>
+        <nav className={`fixed w-full  z-50   ${scrolled ? "bg-white border-b text-black" : "text-black "}`}>
             <MyContainer>
                 <div className="flex justify-between items-center my-4">
-                    <div>
+                    <div className="flex items-center justify-between gap-x-10">
                         <h3 className="text-3xl font-bold">Education Master</h3>
-                    </div>
-                    <ul className="flex gap-5 items-center text-lg">
-                        <li>
-                            <NavLink
-                                to="/"
-                                className={` ${({ isActive }) => {
-                                    isActive ? "text-red-500" : ""
-                                }}`}
-                            >
-                                Home
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/college"
-                                className={` ${({ isActive }) => {
-                                    isActive ? "text-red-500" : ""
-                                }}`}
-                            >
-                                College
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/admission"
-                                className={` ${({ isActive }) => {
-                                    isActive ? "text-red-500" : ""
-                                }}`}
-                            >
-                                Admission
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink
-                                to="/my_colleges"
-                                className={` ${({ isActive }) => {
-                                    isActive ? "text-red-500" : ""
-                                }}`}
-                            >
-                                My colleges
-                            </NavLink>
-                        </li>
+                        <ul className="flex gap-5 items-center text-lg">
+                            <li>
+                                <NavLink
+                                    to="/"
+                                    className={` ${({ isActive }) => {
+                                        isActive ? "text-red-500" : ""
+                                    }}`}
+                                >
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/colleges"
+                                    className={` ${({ isActive }) => {
+                                        isActive ? "text-red-500" : ""
+                                    }}`}
+                                >
+                                    Colleges
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/admission"
+                                    className={` ${({ isActive }) => {
+                                        isActive ? "text-red-500" : ""
+                                    }}`}
+                                >
+                                    Admission
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/my_colleges"
+                                    className={` ${({ isActive }) => {
+                                        isActive ? "text-red-500" : ""
+                                    }}`}
+                                >
+                                    My colleges
+                                </NavLink>
+                            </li>
 
-                    </ul>
+                        </ul>
+                    </div>
+
                     <div >
                         <div className="flex items-center gap-5">
                             {/* <div className="rounded-full bg-white p-2 flex items-center ">
@@ -112,7 +115,9 @@ const Navbar = () => {
                                 >
                                     Login
                                 </NavLink>
-                                <button className="btn btn-primary rounded-full btn-md px-7">SignUp</button>
+                                <Link to='register'>
+                                    <button className="btn btn-primary  rounded-full btn-md px-7">SignUp</button>
+                                </Link>
                             </div>
 
 
