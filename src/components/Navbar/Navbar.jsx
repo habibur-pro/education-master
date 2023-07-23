@@ -2,7 +2,6 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import MyContainer from "../MyContainer/MyContainer";
 import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { AuthContext } from "../../routes/AuthProvider";
 import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
