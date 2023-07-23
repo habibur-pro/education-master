@@ -1,22 +1,25 @@
 import { createContext, useEffect, useState } from "react";
 import app from "../firebase/firebase.config";
-import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, updateProfile } from 'firebase/auth'
+import { FacebookAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 
 const auth = getAuth(app)
 export const AuthContext = createContext(null)
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
-    const [isLoading, setLoading] = useState(true)
+    const [isLoading, setLoading] = useState(false)
 
 
     // user create email with password 
-    const registerEmailPassword = ({ email, password }) => {
+    const registerEmailPassword = (email, password) => {
+        setLoading(true)
+        console.log('from prvider', email, password)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
     // user login email with password 
-    const loginEmailPassword = ({ email, password }) => {
+    const loginEmailPassword = (email, password) => {
+        console.log('from prvider', email, password)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -29,6 +32,11 @@ const AuthProvider = ({ children }) => {
     const facebookLogin = () => {
         const facebookProvider = new FacebookAuthProvider();
         return signInWithPopup(auth, facebookProvider)
+    }
+
+    // logout 
+    const logout = () => {
+        return signOut(auth)
     }
 
     // updata profile 
@@ -49,6 +57,7 @@ const AuthProvider = ({ children }) => {
         googleLogin,
         facebookLogin,
         updateUserProfile,
+        logout,
         isLoading
 
     }
@@ -60,9 +69,11 @@ const AuthProvider = ({ children }) => {
             setLoading(false)
         })
         return () => unsubscribe()
-    }, [])
+    }, [user])
 
-
+    if (isLoading) {
+        return <p>Loading...</p>
+    }
 
     return <AuthContext.Provider value={userInfo}>
         {children}

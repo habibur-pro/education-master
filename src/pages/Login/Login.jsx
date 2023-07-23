@@ -1,14 +1,18 @@
 import PageHeader from "../../components/PageHeader/PageHeader";
 import { useForm } from "react-hook-form"
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-
+    const { loginEmailPassword } = useAuth()
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = (data) => {
+        loginEmailPassword(data?.email, data?.password)
+            .then(result => console.log('login successful', result))
+    }
 
 
 

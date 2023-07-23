@@ -1,12 +1,13 @@
 import { Link, NavLink, useLocation } from "react-router-dom";
 import MyContainer from "../MyContainer/MyContainer";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { AuthContext } from "../../routes/AuthProvider";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
     const location = useLocation()
-    const { user } = useContext(AuthContext)
+    const { user, logout } = useAuth()
     console.log(user)
 
     const [scrolled, setScrolled] = useState(false);
@@ -29,6 +30,13 @@ const Navbar = () => {
         };
     }, []);
 
+
+    const handleLogOut = () => {
+        logout()
+            .then(() => {
+                console.log('log out');
+            })
+    }
 
 
 
@@ -109,14 +117,18 @@ const Navbar = () => {
 
 
                             <div className="flex items-center gap-5">
-                                <NavLink
-                                    to="/login"
-                                    className={` text-lg ${({ isActive }) => {
-                                        isActive ? "text-red-500" : ""
-                                    }}`}
-                                >
-                                    Login
-                                </NavLink>
+                                {
+                                    user ? <button onClick={handleLogOut}>logOUt</button>
+                                        :
+                                        <NavLink
+                                            to="/login"
+                                            className={` text-lg ${({ isActive }) => {
+                                                isActive ? "text-red-500" : ""
+                                            }}`}
+                                        >
+                                            Login
+                                        </NavLink>
+                                }
                                 <Link to='register'>
                                     <button className="btn btn-primary  rounded-full btn-md px-7">SignUp</button>
                                 </Link>

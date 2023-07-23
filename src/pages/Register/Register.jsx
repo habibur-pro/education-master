@@ -3,7 +3,7 @@ import { Controller, useForm } from "react-hook-form"
 import useAuth from "../../hooks/useAuth";
 
 const Register = () => {
-    const { registerEmailPassword } = useAuth()
+    const { loginEmailPassword, registerEmailPassword } = useAuth()
 
 
     const {
@@ -17,7 +17,8 @@ const Register = () => {
     const password = watch('password', '');
 
     const onSubmit = (data) => {
-        registerEmailPassword(data.email, data.password)
+        const { email, password } = data;
+        registerEmailPassword(email, password)
             .then(result => console.log('user', result))
     }
 
@@ -50,6 +51,7 @@ const Register = () => {
                             <label className="font-semibold" htmlFor="">Password</label>
                             <Controller
                                 name="password"
+                                defaultValue=""
                                 control={control}
                                 rules={{
                                     required: 'Password is required',
@@ -93,6 +95,7 @@ const Register = () => {
                             <label className="font-semibold" htmlFor="">Confirm Password</label>
                             <Controller
                                 name="confirmPassword"
+                                defaultValue=""
                                 control={control}
                                 rules={{
                                     required: 'Confirm password is required',
