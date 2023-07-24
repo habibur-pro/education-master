@@ -1,5 +1,5 @@
-import React from 'react';
-
+import Rating from 'react-rating';
+import { IoStarSharp } from "react-icons/io5";
 
 const ReviewItem = ({ review }) => {
     return (
@@ -12,8 +12,15 @@ const ReviewItem = ({ review }) => {
                         className="h-16 w-16 rounded-full object-cover mx-auto lg:mx-0 text-center lg:text-start"
                     />
                     <div>
-                        <p className="mt-1  text-lg font-medium text-center lg:text-start ">{review.user_name}</p>
-                        <p className="mt-1  text-lg text-primary font-medium text-center lg:text-start ">{review.college}</p>
+                        <p className="mt-1 capitalize text-lg font-medium text-center lg:text-start ">{review.user_name}</p>
+                        <p className=" capitalize text-lg text-primary font-medium text-center lg:text-start ">{review.college}</p>
+                        <Rating className="mt-2"
+                            readonly
+                            placeholderRating={3.5}
+                            emptySymbol={<IoStarSharp className="icon text-slate-300" />}
+                            placeholderSymbol={<IoStarSharp className="icon text-primary" />}
+                            fullSymbol={<IoStarSharp className="icon text-primary" />}
+                        />
                     </div>
                 </div>
                 <p className="line-clamp-2 sm:line-clamp-none mt-4 ">
