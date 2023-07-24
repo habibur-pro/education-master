@@ -8,7 +8,7 @@ const TopColleges = () => {
 
     useEffect(() => {
         const baseURL = import.meta.env.VITE_BASEURL
-        fetch(`${baseURL}/colleges`)
+        fetch(`${baseURL}/colleges?limit=3`)
             .then(res => res.json())
             .then(data => setColleges(data))
     }, [])
@@ -17,7 +17,7 @@ const TopColleges = () => {
         <div className="my-20">
             <MyContainer>
                 <div>
-                    <h1 className="text-center text-3xl font-bold">Top Colleges</h1>
+                    <h1 className="text-center text-3xl font-bold mb-20">Top Colleges</h1>
                     <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
                         {
                             colleges.map(college => <CollegeCard

@@ -5,19 +5,22 @@ const CollegeCard = ({ college }) => {
     const { name, image, admission_date, events, researches_history, sports, _id } = college || {}
     console.log('college from card', college)
     return (
-        <div>
-            <img src={image} alt="" />
-            <div className="p-5 bg-base-100">
-                <h3 className="text-2xl">{name}</h3>
+        <div className="group ">
+            <div className="overflow-hidden">
+                <img className="group-hover:scale-125 duration-300 " src={image} alt="" />
+            </div>
+            <div className="py-5 px-7 bg-accent text-black">
+                <h3 className="text-2xl font-bold group-hover:text-primary duration-300">{name}</h3>
                 <h3>{admission_date}</h3>
                 <p>{researches_history}</p>
                 {/* <p>{researches_history}</p>
                 <p>{events}</p>
                 <p>{sports}</p> */}
+                <Link className="hover:tracking-[2px] duration-500 inline-flex items-center text-primary mt-2" to={`/colleges/${_id}`}>
+                    Details <span className="text-xl"><HiOutlineArrowNarrowRight /></span>
+                </Link>
             </div>
-            <Link to={`/colleges/${_id}`}>
-                <button className="btn btn-primary btn-link hover:tracking-[2px] duration-500 ">Details <span className="text-xl"><HiOutlineArrowNarrowRight /></span></button>
-            </Link>
+
         </div>
     );
 };
