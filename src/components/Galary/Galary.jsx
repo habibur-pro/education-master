@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MyContainer from "../../MyContainer/MyContainer";
+import MyContainer from "../MyContainer/MyContainer";
 
 
 const Galary = () => {
